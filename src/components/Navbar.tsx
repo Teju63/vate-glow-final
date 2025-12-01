@@ -15,6 +15,7 @@ export function Navbar() {
   const cartItems = useQuery(api.cart.getCart);
   const cartCount = cartItems?.reduce((acc, item) => acc + item.quantity, 0) || 0;
   const [search, setSearch] = useState("");
+  const isHome = location.pathname === "/";
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,6 +31,7 @@ export function Navbar() {
           {/* Left Section: Mobile Menu, Back Button, Logo */}
           <div className="flex items-center gap-2 md:gap-4">
             {/* Mobile Menu */}
+            {isHome && (
             <div className="md:hidden">
               <Sheet>
                 <SheetTrigger asChild>
@@ -56,9 +58,10 @@ export function Navbar() {
                 </SheetContent>
               </Sheet>
             </div>
+            )}
 
             {/* Back Button */}
-            {location.pathname !== "/" && (
+            {!isHome && (
               <Button 
                 variant="ghost" 
                 size="icon" 
@@ -77,6 +80,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop Links */}
+          {isHome && (
           <div className="hidden md:flex items-center gap-8">
             <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">Home</Link>
             <Link to="/shop" className="text-sm font-medium hover:text-primary transition-colors">Shop</Link>
@@ -84,6 +88,7 @@ export function Navbar() {
             <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">About</Link>
             <Link to="/admin" className="text-sm font-medium hover:text-primary transition-colors">Admin</Link>
           </div>
+          )}
 
           {/* Actions */}
           <div className="flex items-center gap-1">
