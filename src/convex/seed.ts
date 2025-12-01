@@ -15,27 +15,45 @@ const PRODUCT_NAMES = {
 const IMAGES = {
   Eyes: [
     "https://images.unsplash.com/photo-1583241744611-721f189184b8?w=500&q=80",
-    "https://images.unsplash.com/photo-1596462502278-27bfdd403348?w=500&q=80"
+    "https://images.unsplash.com/photo-1596462502278-27bfdd403348?w=500&q=80",
+    "https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=500&q=80",
+    "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=500&q=80",
+    "https://images.unsplash.com/photo-1503236823255-943684d1834e?w=500&q=80"
   ],
   Lips: [
     "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500&q=80",
-    "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?w=500&q=80"
+    "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?w=500&q=80",
+    "https://images.unsplash.com/photo-1591360236480-9495562922c1?w=500&q=80",
+    "https://images.unsplash.com/photo-1627292441194-0264e2273117?w=500&q=80",
+    "https://images.unsplash.com/photo-1605701250441-2bfae07ea38d?w=500&q=80"
   ],
   Face: [
     "https://images.unsplash.com/photo-1596462502278-27bfdd403348?w=500&q=80",
-    "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&q=80"
+    "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&q=80",
+    "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=500&q=80",
+    "https://images.unsplash.com/photo-1515688594390-b649af70d282?w=500&q=80",
+    "https://images.unsplash.com/photo-1590156206657-b18a62318c8c?w=500&q=80"
   ],
   Skincare: [
     "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&q=80",
-    "https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?w=500&q=80"
+    "https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?w=500&q=80",
+    "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&q=80",
+    "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500&q=80",
+    "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=500&q=80"
   ],
   Nails: [
     "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500&q=80",
-    "https://images.unsplash.com/photo-1632973579791-356308829767?w=500&q=80"
+    "https://images.unsplash.com/photo-1632973579791-356308829767?w=500&q=80",
+    "https://images.unsplash.com/photo-1519014816548-bf5fe059e98b?w=500&q=80",
+    "https://images.unsplash.com/photo-1522337360705-8b13d52c03cc?w=500&q=80",
+    "https://images.unsplash.com/photo-1599693828665-c311a8d8c964?w=500&q=80"
   ],
   Accessories: [
     "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=500&q=80",
-    "https://images.unsplash.com/photo-1596462502278-27bfdd403348?w=500&q=80"
+    "https://images.unsplash.com/photo-1596462502278-27bfdd403348?w=500&q=80",
+    "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&q=80",
+    "https://images.unsplash.com/photo-1590439471364-192aa70c0b53?w=500&q=80",
+    "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?w=500&q=80"
   ]
 };
 
