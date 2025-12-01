@@ -81,6 +81,7 @@ export function Navbar() {
             <Link to="/shop" className="text-sm font-medium hover:text-primary transition-colors">Shop</Link>
             <Link to="/lookbook" className="text-sm font-medium hover:text-primary transition-colors">Lookbook</Link>
             <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">About</Link>
+            <Link to="/dashboard" className="text-sm font-medium hover:text-primary transition-colors">Dashboard</Link>
           </div>
 
           {/* Actions */}
