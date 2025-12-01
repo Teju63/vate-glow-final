@@ -19,6 +19,7 @@ import Checkout from "@/pages/Checkout";
 import Profile from "@/pages/Profile";
 import Lookbook from "@/pages/Lookbook";
 import About from "@/pages/About";
+import Wishlist from "@/pages/Wishlist";
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
 
@@ -60,6 +61,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/lookbook" element={<Lookbook />} />
               <Route path="/about" element={<About />} />
             </Route>
