@@ -37,7 +37,7 @@ export function Navbar() {
               <SheetContent side="left" className="w-[300px] bg-background/95 backdrop-blur-xl border-r border-white/10">
                 <div className="flex flex-col gap-6 mt-8">
                   <Link to="/" className="text-2xl font-bold text-primary">
-                    Vate <span className="opacity-50 font-light">Beauty</span>
+                    Vate Beauty
                   </Link>
                   <div className="flex flex-col gap-4">
                     <Link to="/shop" className="text-lg hover:text-primary transition-colors">Shop All</Link>
@@ -54,7 +54,7 @@ export function Navbar() {
 
           {/* Logo */}
           <Link to="/" className="text-2xl font-bold tracking-tighter bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:opacity-80 transition-opacity">
-            Vate <span className="opacity-50 font-light">Beauty</span>
+            Vate Beauty
           </Link>
 
           {/* Desktop Links */}

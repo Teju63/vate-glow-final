@@ -29,7 +29,7 @@ export default function Landing() {
             transition={{ duration: 0.8 }}
             className="text-6xl md:text-8xl font-bold tracking-tighter mb-6 bg-gradient-to-r from-primary via-purple-400 to-secondary bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,0,128,0.5)]"
           >
-            Vate <span className="opacity-50 font-light">Beauty</span>
+            Vate Beauty
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
