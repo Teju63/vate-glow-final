@@ -1,7 +1,7 @@
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Heart, User, Menu, Search } from "lucide-react";
+import { ShoppingBag, Heart, User, Menu, Search, ArrowLeft } from "lucide-react";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 export function Navbar() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const cartItems = useQuery(api.cart.getCart);
   const cartCount = cartItems?.reduce((acc, item) => acc + item.quantity, 0) || 0;
   const [search, setSearch] = useState("");
@@ -26,39 +27,57 @@ export function Navbar() {
     <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
       <nav className="w-full max-w-5xl rounded-full border border-white/20 bg-background/70 backdrop-blur-xl shadow-lg">
         <div className="px-6 h-16 flex items-center justify-between">
-          {/* Mobile Menu */}
-          <div className="md:hidden">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="hover:bg-primary/10 rounded-full">
-                  <Menu className="h-6 w-6" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="w-[300px] bg-background/95 backdrop-blur-xl border-r border-white/10">
-                <div className="flex flex-col gap-6 mt-8">
-                  <Link to="/" className="text-2xl font-bold text-primary">
-                    Vate Beauty
-                  </Link>
-                  <div className="flex flex-col gap-4">
-                    <Link to="/shop" className="text-lg hover:text-primary transition-colors">Shop All</Link>
-                    <Link to="/shop?category=Eyes" className="text-lg hover:text-primary transition-colors">Eyes</Link>
-                    <Link to="/shop?category=Lips" className="text-lg hover:text-primary transition-colors">Lips</Link>
-                    <Link to="/shop?category=Face" className="text-lg hover:text-primary transition-colors">Face</Link>
-                    <Link to="/lookbook" className="text-lg hover:text-primary transition-colors">Lookbook</Link>
-                    <Link to="/about" className="text-lg hover:text-primary transition-colors">About Us</Link>
+          {/* Left Section: Mobile Menu, Back Button, Logo */}
+          <div className="flex items-center gap-2 md:gap-4">
+            {/* Mobile Menu */}
+            <div className="md:hidden">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="hover:bg-primary/10 rounded-full">
+                    <Menu className="h-6 w-6" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="w-[300px] bg-background/95 backdrop-blur-xl border-r border-white/10">
+                  <div className="flex flex-col gap-6 mt-8">
+                    <Link to="/" className="text-2xl font-bold text-primary">
+                      Vate Beauty
+                    </Link>
+                    <div className="flex flex-col gap-4">
+                      <Link to="/" className="text-lg hover:text-primary transition-colors">Home</Link>
+                      <Link to="/shop" className="text-lg hover:text-primary transition-colors">Shop All</Link>
+                      <Link to="/shop?category=Eyes" className="text-lg hover:text-primary transition-colors">Eyes</Link>
+                      <Link to="/shop?category=Lips" className="text-lg hover:text-primary transition-colors">Lips</Link>
+                      <Link to="/shop?category=Face" className="text-lg hover:text-primary transition-colors">Face</Link>
+                      <Link to="/lookbook" className="text-lg hover:text-primary transition-colors">Lookbook</Link>
+                      <Link to="/about" className="text-lg hover:text-primary transition-colors">About Us</Link>
+                    </div>
                   </div>
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
+                </SheetContent>
+              </Sheet>
+            </div>
 
-          {/* Logo */}
-          <Link to="/" className="text-2xl font-bold tracking-tighter text-primary hover:opacity-80 transition-opacity">
-            Vate Beauty
-          </Link>
+            {/* Back Button */}
+            {location.pathname !== "/" && (
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={() => navigate(-1)} 
+                className="hover:bg-primary/10 rounded-full"
+                title="Go Back"
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+            )}
+
+            {/* Logo */}
+            <Link to="/" className="text-2xl font-bold tracking-tighter text-primary hover:opacity-80 transition-opacity">
+              Vate Beauty
+            </Link>
+          </div>
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
+            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">Home</Link>
             <Link to="/shop" className="text-sm font-medium hover:text-primary transition-colors">Shop</Link>
             <Link to="/lookbook" className="text-sm font-medium hover:text-primary transition-colors">Lookbook</Link>
             <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">About</Link>
