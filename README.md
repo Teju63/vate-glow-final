@@ -13,22 +13,62 @@ This project uses the following tech stack:
 - Framer Motion (for animations)
 - Three js (for 3d models)
 
-All relevant files live in the 'src' directory.
+All relevant files live in the `src` directory.
 
 Use pnpm for the package manager.
 
 ## Setup
 
-This project is set up already and running on a cloud environment, as well as a convex development in the sandbox.
+This project is set up already and running on a cloud environment, as well as a Convex deployment in the sandbox.
+
+To run the project locally:
+
+1. **Clone and install**
+
+git clone https://github.com/Varshaisnice/vate-glow-final-1.git
+cd vate-glow-final-1
+pnpm install
+
+
+2. **Configure environment variables**
+
+Create `.env.local` in the project root (or update it if it already exists):
+
+VITE_CONVEX_URL=<your Convex deployment public URL>
+CONVEX_DEPLOYMENT=<your Convex deployment name>
+
+
+The Convex server has its own environment variables configured in the Convex dashboard (e.g. `JWKS`, `JWT_PRIVATE_KEY`, `SITE_URL`) and they are not loaded from this repo.
+
+3. **Start Convex dev server**
+
+In one terminal:
+
+npx convex dev
+
+text
+
+4. **Start the Vite dev server**
+
+In another terminal:
+
+pnpm dev
+
+text
+
+The app will be available at `http://localhost:5173`.
+
+5. **Admin access**
+
+Authentication is available at `/auth`. To access the admin dashboard locally, sign in with the configured admin account (currently `mvarsha4306@gmail.com`) and then navigate to `/admin`.
 
 ## Environment Variables
 
-The project is set up with project specific CONVEX_DEPLOYMENT and VITE_CONVEX_URL environment variables on the client side.
+The project is set up with project specific `CONVEX_DEPLOYMENT` and `VITE_CONVEX_URL` environment variables on the client side.
 
-The convex server has a separate set of environment variables that are accessible by the convex backend.
+The Convex server has a separate set of environment variables that are accessible by the Convex backend.
 
-Currently, these variables include auth-specific keys: JWKS, JWT_PRIVATE_KEY, and SITE_URL.
-
+Currently, these variables include auth-specific keys: `JWKS`, `JWT_PRIVATE_KEY`, and `SITE_URL`.
 
 # Using Authentication (Important!)
 
@@ -36,7 +76,7 @@ You must follow these conventions when using authentication.
 
 ## Auth is already set up.
 
-All convex authentication functions are already set up. The auth currently uses email OTP and anonymous users, but can support more.
+All Convex authentication functions are already set up. The auth currently uses email OTP and anonymous users, but can support more.
 
 The email OTP configuration is defined in `src/convex/auth/emailOtp.ts`. DO NOT MODIFY THIS FILE.
 
@@ -44,26 +84,27 @@ Also, DO NOT MODIFY THESE AUTH FILES: `src/convex/auth.config.ts` and `src/conve
 
 ## Using Convex Auth on the backend
 
-On the `src/convex/users.ts` file, you can use the `getCurrentUser` function to get the current user's data.
+On the `src/convex/authHelpers.ts` file, you can use the `getCurrentUser` function to get the current user's data.
 
 ## Using Convex Auth on the frontend
 
 The `/auth` page is already set up to use auth. Navigate to `/auth` for all log in / sign up sequences.
 
 You MUST use this hook to get user data. Never do this yourself without the hook:
-```typescript
+
 import { useAuth } from "@/hooks/use-auth";
 
 const { isLoading, isAuthenticated, user, signIn, signOut } = useAuth();
-```
+
+text
 
 ## Protected Routes
 
-When protecting a page, use the auth hooks to check for authentication and redirect to /auth.
+When protecting a page, use the auth hooks to check for authentication and redirect to `/auth`.
 
 ## Auth Page
 
-The auth page is defined in `src/pages/Auth.tsx`. Redirect authenticated pages and sign in / sign up to /auth.
+The auth page is defined in `src/pages/Auth.tsx`. Redirect authenticated pages and sign in / sign up to `/auth`.
 
 ## Authorization
 
@@ -75,7 +116,7 @@ You should also be protecting queries, mutations, and actions at the base level,
 
 ## Adding a redirect after auth
 
-In `src/main.tsx`, you must add a redirect after auth URL to redirect to the correct dashboard/profile/page that should be created after authentication.
+In `src/main.tsx`, you must add a redirect-after-auth URL to redirect to the correct dashboard/profile/page that should be created after authentication.
 
 # Frontend Conventions
 
@@ -89,144 +130,138 @@ Shadcn primitives are located in the `src/components/ui` folder and should be us
 
 Your page component should go under the `src/pages` folder.
 
-When adding a page, update the react router configuration in `src/main.tsx` to include the new route you just added.
+When adding a page, update the React Router configuration in `src/main.tsx` to include the new route you just added.
 
 ## Shad CN conventions
 
 Follow these conventions when using Shad CN components, which you should use by default.
-- Remember to use "cursor-pointer" to make the element clickable
-- For title text, use the "tracking-tight font-bold" class to make the text more readable
-- Always make apps MOBILE RESPONSIVE. This is important
-- AVOID NESTED CARDS. Try and not to nest cards, borders, components, etc. Nested cards add clutter and make the app look messy.
-- AVOID SHADOWS. Avoid adding any shadows to components. stick with a thin border without the shadow.
-- Avoid skeletons; instead, use the loader2 component to show a spinning loading state when loading data.
-
+- Remember to use `cursor-pointer` to make the element clickable.
+- For title text, use the `tracking-tight font-bold` class to make the text more readable.
+- Always make apps **mobile responsive**.
+- Avoid nested cards; nested borders/components add clutter.
+- Avoid shadows; use thin borders without shadows.
+- Avoid skeletons; instead, use the `loader2` component to show a spinning loading state when loading data.
 
 ## Landing Pages
 
-You must always create good-looking designer-level styles to your application. 
-- Make it well animated and fit a certain "theme", ie neo brutalist, retro, neumorphism, glass morphism, etc
+You must always create good-looking designer-level styles for your application. 
+- Make it well animated and fit a certain theme (neo brutalist, retro, neumorphism, glass morphism, etc).
 
 Use known images and emojis from online.
 
-If the user is logged in already, show the get started button to say "Dashboard" or "Profile" instead to take them there.
+If the user is logged in already, show the Get Started button as “Dashboard” or “Profile” instead and take them there.
 
 ## Responsiveness and formatting
 
-Make sure pages are wrapped in a container to prevent the width stretching out on wide screens. Always make sure they are centered aligned and not off-center.
+Make sure pages are wrapped in a container to prevent the width stretching out on wide screens. Always make sure they are center aligned.
 
-Always make sure that your designs are mobile responsive. Verify the formatting to ensure it has correct max and min widths as well as mobile responsiveness.
+Always make sure that your designs are mobile responsive. Verify formatting for correct max/min widths.
 
-- Always create sidebars for protected dashboard pages and navigate between pages
-- Always create navbars for landing pages
-- On these bars, the created logo should be clickable and redirect to the index page
+- Always create sidebars for protected dashboard pages and navigate between pages.
+- Always create navbars for landing pages.
+- The logo should be clickable and redirect to the index page.
 
 ## Animating with Framer Motion
 
-You must add animations to components using Framer Motion. It is already installed and configured in the project.
+You must add animations to components using Framer Motion. It is already installed and configured.
 
-To use it, import the `motion` component from `framer-motion` and use it to wrap the component you want to animate.
+To use it, import the `motion` component from `framer-motion` and wrap the component you want to animate.
 
-
-### Other Items to animate
-- Fade in and Fade Out
-- Slide in and Slide Out animations
-- Rendering animations
+Things to animate:
+- Fade in / fade out
+- Slide in / slide out
+- Render animations
 - Button clicks and UI elements
 
-Animate for all components, including on landing page and app pages.
+Animate for all components, including landing and app pages.
 
 ## Three JS Graphics
 
-Your app comes with three js by default. You can use it to create 3D graphics for landing pages, games, etc.
-
+Your app comes with Three.js by default. You can use it to create 3D graphics for landing pages, games, etc.
 
 ## Colors
 
-You can override colors in: `src/index.css`
+You can override colors in `src/index.css`.
 
-This uses the oklch color format for tailwind v4.
+This uses the `oklch` color format for Tailwind v4.
 
 Always use these color variable names.
 
-Make sure all ui components are set up to be mobile responsive and compatible with both light and dark mode.
+Make sure all UI components are mobile responsive and compatible with both light and dark mode.
 
-Set theme using `dark` or `light` variables at the parent className.
+Set theme using `dark` or `light` variables at the parent `className`.
 
 ## Styling and Theming
 
-When changing the theme, always change the underlying theme of the shad cn components app-wide under `src/components/ui` and the colors in the index.css file.
+When changing the theme, always change the underlying theme of the Shadcn components app-wide under `src/components/ui` and the colors in `index.css`.
 
-Avoid hardcoding in colors unless necessary for a use case, and properly implement themes through the underlying shad cn ui components.
+Avoid hardcoding colors unless necessary, and implement themes through the Shadcn UI components.
 
-When styling, ensure buttons and clickable items have pointer-click on them (don't by default).
+When styling, ensure buttons and clickable items have `cursor-pointer`.
 
-Always follow a set theme style and ensure it is tuned to the user's liking.
+Always follow a consistent theme style and ensure it matches the app’s look.
 
 ## Toasts
 
-You should always use toasts to display results to the user, such as confirmations, results, errors, etc.
+You should always use toasts to display results to the user (confirmations, results, errors, etc.).
 
-Use the shad cn Sonner component as the toaster. For example:
+Use the Shadcn Sonner component as the toaster:
 
-```
-import { toast } from "sonner"
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
-import { Button } from "@/components/ui/button"
 export function SonnerDemo() {
-  return (
-    <Button
-      variant="outline"
-      onClick={() =>
-        toast("Event has been created", {
-          description: "Sunday, December 03, 2023 at 9:00 AM",
-          action: {
-            label: "Undo",
-            onClick: () => console.log("Undo"),
-          },
-        })
-      }
-    >
-      Show Toast
-    </Button>
-  )
+return (
+<Button
+variant="outline"
+onClick={() =>
+toast("Event has been created", {
+description: "Sunday, December 03, 2023 at 9:00 AM",
+action: {
+label: "Undo",
+onClick: () => console.log("Undo"),
+},
+})
 }
-```
+>
+Show Toast
+</Button>
+);
+}
 
-Remember to import { toast } from "sonner". Usage: `toast("Event has been created.")`
+text
+
+Remember to `import { toast } from "sonner"`. Usage: `toast("Event has been created.")`.
 
 ## Dialogs
 
-Always ensure your larger dialogs have a scroll in its content to ensure that its content fits the screen size. Make sure that the content is not cut off from the screen.
+Always ensure your larger dialogs have scrollable content so everything fits on screen.
 
-Ideally, instead of using a new page, use a Dialog instead. 
+Ideally, instead of using a new page, use a Dialog instead.
 
 # Using the Convex backend
 
-You will be implementing the convex backend. Follow your knowledge of convex and the documentation to implement the backend.
+You will be implementing the Convex backend. Follow your knowledge of Convex and the documentation.
 
 ## The Convex Schema
 
-You must correctly follow the convex schema implementation.
-
 The schema is defined in `src/convex/schema.ts`.
 
-Do not include the `_id` and `_creationTime` fields in your queries (it is included by default for each table).
-Do not index `_creationTime` as it is indexed for you. Never have duplicate indexes.
-
+- Do not include the `_id` and `_creationTime` fields in your queries (they are included by default).
+- Do not index `_creationTime` (it is indexed for you).
+- Never create duplicate indexes.
 
 ## Convex Actions: Using CRUD operations
 
-When running anything that involves external connections, you must use a convex action with "use node" at the top of the file.
+When running anything that involves external connections, you must use a Convex **action** with `"use node"` at the top of the file.
 
-You cannot have queries or mutations in the same file as a "use node" action file. Thus, you must use pre-built queries and mutations in other files.
+You cannot have queries or mutations in the same file as a `"use node"` action file. Use pre-built queries and mutations in other files.
 
-You can also use the pre-installed internal crud functions for the database:
+You can also use the pre-installed internal CRUD functions for the database:
 
-```ts
 // in convex/users.ts
 import { crud } from "convex-helpers/server/crud";
-import schema from "./schema.ts";
+import schema from "./schema";
 
 export const { create, read, update, destroy } = crud(schema, "users");
 
@@ -234,24 +269,25 @@ export const { create, read, update, destroy } = crud(schema, "users");
 const user = await ctx.runQuery(internal.users.read, { id: userId });
 
 await ctx.runMutation(internal.users.update, {
-  id: userId,
-  patch: {
-    status: "inactive",
-  },
+id: userId,
+patch: {
+status: "inactive",
+},
 });
-```
 
+text
 
 ## Common Convex Mistakes To Avoid
 
-When using convex, make sure:
-- Document IDs are referenced as `_id` field, not `id`.
-- Document ID types are referenced as `Id<"TableName">`, not `string`.
-- Document object types are referenced as `Doc<"TableName">`.
-- Keep schemaValidation to false in the schema file.
-- You must correctly type your code so that it passes the type checker.
-- You must handle null / undefined cases of your convex queries for both frontend and backend, or else it will throw an error that your data could be null or undefined.
-- Always use the `@/folder` path, with `@/convex/folder/file.ts` syntax for importing convex files.
-- This includes importing generated files like `@/convex/_generated/server`, `@/convex/_generated/api`
-- Remember to import functions like useQuery, useMutation, useAction, etc. from `convex/react`
-- NEVER have return type validators.
+When using Convex, make sure:
+
+- Document IDs are referenced as `_id`, not `id`.
+- Document ID types are `Id<"TableName">`, not `string`.
+- Document object types are `Doc<"TableName">`.
+- Keep `schemaValidation` to `false` in the schema file.
+- Type your code so it passes the type checker.
+- Handle `null` / `undefined` cases of your Convex queries on both frontend and backend.
+- Always use the `@/` alias path, e.g. `@/convex/_generated/server`, `@/convex/_generated/api`.
+- Import hooks like `useQuery`, `useMutation`, `useAction` from `convex/react`.
+- Never use return type validators.
+
